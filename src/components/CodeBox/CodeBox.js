@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import { CODE_TYPES } from '../../constants/codeTypes';
-
+import * as actions from '../../store/actions/actions';
 
 const CodeBoxWrapper = styled.div`
     background-color: ${props => props.theme.colors.darkBg};
@@ -13,16 +14,17 @@ const CodeBoxWrapper = styled.div`
     border-top: none;
 `
 
-const CodeBoxLabel = styled.span`
+const CodeBoxLabel = styled.h2`
     display: inline-block;
     color: #fff;
     width: 100%;
     padding: ${props => props.theme.spacers.small};
+    font-size: 1.1rem;
+    font-weight: 400;
 `
 
 const CodeInput = styled.div.attrs(props => ({
-    contentEditable: 'true',
-    autofocus: props.type === CODE_TYPES[0] ? 'true' : 'false'
+    contentEditable: 'true'
 }))`
     width: 100%;
     height: calc(100% - ${props => props.theme.spacers.small} - 2rem);
@@ -36,12 +38,36 @@ const CodeInput = styled.div.attrs(props => ({
 `
 
 const CodeBox = (props) => {
+    const inputEl = useRef(null);
+    const { type } = props;
+    let timeout = 0;
+
+    useEffect(() => {
+        if (type === CODE_TYPES.HTML)
+            inputEl.current.focus();
+    }, [type]);
+
+    const codeChangeHandler = (e) => {
+        const code = e.currentTarget.textContent;
+
+        if (timeout) clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            props.onHTMLCodeChanged(code);
+        }, 500);
+    }
+
     return (
         <CodeBoxWrapper>
             <CodeBoxLabel> {props.type} </CodeBoxLabel>
-            <CodeInput />
+            <CodeInput onInput={codeChangeHandler} ref={inputEl} />
         </CodeBoxWrapper>
     )
 }
 
-export default CodeBox;
+const mapDispatchToProps = dispatch => {
+    return {
+        onHTMLCodeChanged: (htmlCode) => dispatch(actions.setHTML(htmlCode))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(CodeBox);
