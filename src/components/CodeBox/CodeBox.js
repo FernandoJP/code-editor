@@ -52,7 +52,19 @@ const CodeBox = (props) => {
 
         if (timeout) clearTimeout(timeout);
         timeout = setTimeout(() => {
-            props.onHTMLCodeChanged(code);
+            switch (type) {
+                case CODE_TYPES.HTML:
+                    props.onHtmlCodeChanged(code);
+                    break;
+                case CODE_TYPES.CSS:
+                    props.onCssCodeChanged(code);
+                    break;
+                case CODE_TYPES.JAVASCRIPT:
+                    props.onJsCodeChanged(code);
+                    break;
+                default:
+                    break;
+            }
         }, 500);
     }
 
@@ -66,7 +78,9 @@ const CodeBox = (props) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onHTMLCodeChanged: (htmlCode) => dispatch(actions.setHTML(htmlCode))
+        onHtmlCodeChanged: (htmlCode) => dispatch(actions.setHtml(htmlCode)),
+        onCssCodeChanged: (cssCode) => dispatch(actions.setCss(cssCode)),
+        onJsCodeChanged: (jsCode) => dispatch(actions.setJs(jsCode))
     }
 }
 

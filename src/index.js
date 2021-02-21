@@ -12,7 +12,7 @@ import Theme from './theme/theme';
 const root = document.getElementById('root');
 
 const rootReducer = combineReducers({
-  codeEditorReducer: reducer,
+  codeEditor: reducer,
 });
 
 const store = createStore(rootReducer);

@@ -1,3 +1,5 @@
 export {
-    setHTML
+    setHtml,
+    setCss,
+    setJs
 } from './codeEditor';
