@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import CodeBox from '../CodeBox/CodeBox';
 import CodeRendering from '../CodeRendering/CodeRendering';
+import CodeFilesDownload from '../CodeFilesDownload/CodeFilesDownload';
 import { CODE_TYPES } from '../../constants/codeTypes';
 
 const CodeEditorWrapper = styled.section`
@@ -18,7 +19,10 @@ const CodeEditor = () => {
                 <CodeBox type={CODE_TYPES.CSS} />
                 <CodeBox type={CODE_TYPES.JAVASCRIPT} />
             </CodeEditorWrapper>
+
             <CodeRendering />
+
+            <CodeFilesDownload />
         </>
     )
 }
