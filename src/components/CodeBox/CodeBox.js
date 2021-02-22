@@ -32,8 +32,7 @@ const CodeInput = styled.div.attrs(props => ({
     overflow: auto;
 
     &:focus {
-        border: 1px solid #777;
-        outline: none;
+        outline: 1px solid #777;
     }
 `
 

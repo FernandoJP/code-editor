@@ -8,8 +8,24 @@ const CodeRenderingWrapper = styled.section`
 `
 
 const CodeRendering = (props) => {
+    const Code = styled.div`
+        ${props.cssCode}
+    `
+    const runJsCode = (jsCode) => {
+        try {
+            //TODO: fix this unsafe code
+            var fnInstructions = new Function(jsCode);
+
+            return (fnInstructions());
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
     return (
         <CodeRenderingWrapper>
+            {runJsCode(props.jsCode)}
+            <Code dangerouslySetInnerHTML={{ __html: props.htmlCode }} />
         </CodeRenderingWrapper>
     )
 }
