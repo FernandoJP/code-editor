@@ -13,7 +13,6 @@ const DownloadButton = styled.button`
     position: absolute;
     top: 0;
     right: 0;
-    margin: ${props => props.theme.spacers.small};
     padding: ${props => props.theme.spacers.small};
     background: ${props => props.theme.colors.primary};
     color: #fff;

@@ -7,23 +7,33 @@ import CodeFilesDownload from '../CodeFilesDownload/CodeFilesDownload';
 import { CODE_TYPES } from '../../constants/codeTypes';
 
 const CodeEditorWrapper = styled.section`
-    display: flex;
     height: 60vh;
+    
+`
+
+const CodeBoxWrapper = styled.section`
+    display: flex;
+    height: 100%;
+`
+
+const MainHeading = styled.h1`
+    padding-left: ${props => props.theme.spacers.medium};
 `
 
 const CodeEditor = () => {
     return (
-        <>
-            <CodeEditorWrapper>
+        <CodeEditorWrapper role="main">
+            <MainHeading>Code Editor</MainHeading>
+            <CodeBoxWrapper>
                 <CodeBox type={CODE_TYPES.HTML} />
                 <CodeBox type={CODE_TYPES.CSS} />
                 <CodeBox type={CODE_TYPES.JAVASCRIPT} />
-            </CodeEditorWrapper>
+            </CodeBoxWrapper>
 
             <CodeRendering />
 
             <CodeFilesDownload />
-        </>
+        </CodeEditorWrapper>
     )
 }
 
