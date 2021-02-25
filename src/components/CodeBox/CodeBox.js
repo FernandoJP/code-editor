@@ -65,8 +65,6 @@ export const CodeBox = (props) => {
                     break;
             }
         }, 500);
-
-        return '123';
     }
 
     return (

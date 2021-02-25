@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import JSZip from 'jszip';
 import FileSaver from 'file-saver';
@@ -18,19 +18,19 @@ const DownloadButton = styled.button`
     color: #fff;
 `
 
-const CodeFilesDownload = (props) => {
+class CodeFilesDownload extends Component {
 
-    function downloadFile(...files) {
+    downloadFile = (...files) => {
         let zip = new JSZip();
 
         files.forEach(file => zip.file(file.name, file.content));
 
-        zip.generateAsync({ type: "blob" }).then(function (content) {
+        zip.generateAsync({ type: "blob" }).then((content) => {
             FileSaver.saveAs(content, "code.zip");
         });
     }
 
-    const generateHtmlCode = (htmlCode) => {
+    generateHtmlCode = (htmlCode) => {
         return `
         <!DOCTYPE html>
         <html>
@@ -46,23 +46,25 @@ const CodeFilesDownload = (props) => {
         `
     }
 
-    const downloadClickHandler = () => {
-        downloadFile(
-            { name: 'index.html', content: generateHtmlCode(props.htmlCode) },
-            { name: 'scripts.js', content: props.jsCode },
-            { name: 'styles.css', content: props.cssCode }
+    downloadClickHandler = () => {
+        this.downloadFile(
+            { name: 'index.html', content: this.generateHtmlCode(this.props.htmlCode) },
+            { name: 'scripts.js', content: this.props.jsCode },
+            { name: 'styles.css', content: this.props.cssCode }
         );
     }
 
-    return (
-        <>
-            <CodeFilesDownloadButton>
-                <DownloadButton onClick={() => downloadClickHandler()}>
-                    Download files
-                </DownloadButton>
-            </CodeFilesDownloadButton>
-        </>
-    )
+    render() {
+        return (
+            <>
+                <CodeFilesDownloadButton>
+                    <DownloadButton onClick={() => this.downloadClickHandler()}>
+                        Download files
+                    </DownloadButton>
+                </CodeFilesDownloadButton>
+            </>
+        )
+    }
 }
 
 const mapStateToProps = state => {
