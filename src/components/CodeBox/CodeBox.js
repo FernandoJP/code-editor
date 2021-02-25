@@ -36,7 +36,7 @@ const CodeInput = styled.div.attrs(props => ({
     }
 `
 
-const CodeBox = (props) => {
+export const CodeBox = (props) => {
     const inputEl = useRef(null);
     const { type } = props;
     let timeout = 0;
@@ -65,6 +65,8 @@ const CodeBox = (props) => {
                     break;
             }
         }, 500);
+
+        return '123';
     }
 
     return (
