@@ -8,7 +8,7 @@ const CodeRenderingWrapper = styled.section`
     flex-basis: 100%;
 `
 
-const CodeRendering = (props) => {
+export const CodeRendering = (props) => {
     const Code = styled.div`
         ${props.cssCode}
     `
