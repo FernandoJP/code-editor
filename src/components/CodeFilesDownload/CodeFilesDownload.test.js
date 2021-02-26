@@ -11,11 +11,11 @@ describe('<CodeFilesDownload />', () => {
     let wrapper, instance;
 
     beforeEach(() => {
-        const mountWithTheme = tree => shallow(tree, {
+        const shallowWithTheme = tree => shallow(tree, {
             wrappingComponent: ThemeProviderWrapper
         });
 
-        wrapper = mountWithTheme(<CodeFilesDownload store={store} />).dive().dive();
+        wrapper = shallowWithTheme(<CodeFilesDownload store={store} />).dive().dive();
         instance = wrapper.instance();
     });
 
