@@ -12,6 +12,11 @@ const CodeBoxWrapper = styled.div`
     color: ${props => props.theme.colors.secondary};
     border: 1rem solid ${props => props.theme.colors.darkBgAccent};
     border-top: none;
+    flex-basis: 100%;
+
+    @media ${({ theme }) => theme.mediaQueries['mobile']} {
+        flex-basis: 33.333333%;
+    }
 `
 
 const CodeBoxLabel = styled.h2`

@@ -14,6 +14,7 @@ const CodeEditorWrapper = styled.section`
 const CodeBoxWrapper = styled.section`
     display: flex;
     height: 100%;
+    flex-wrap: wrap;
 `
 
 const MainHeading = styled.h1`
@@ -28,9 +29,9 @@ const CodeEditor = () => {
                 <CodeBox type={CODE_TYPES.HTML} />
                 <CodeBox type={CODE_TYPES.CSS} />
                 <CodeBox type={CODE_TYPES.JAVASCRIPT} />
+                <CodeRendering />
             </CodeBoxWrapper>
 
-            <CodeRendering />
 
             <CodeFilesDownload />
         </CodeEditorWrapper>

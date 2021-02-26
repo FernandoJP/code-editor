@@ -5,6 +5,7 @@ import styled from 'styled-components';
 const CodeRenderingWrapper = styled.section`
     display: flex;
     height: 40vh;
+    flex-basis: 100%;
 `
 
 const CodeRendering = (props) => {

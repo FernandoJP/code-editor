@@ -16,7 +16,7 @@ const theme = {
         large: '3rem'
     },
     mediaQueries: {
-        'above768': `only screen and (min-width: 768px)`
+        'mobile': `only screen and (min-width: 768px)`
     }
 }
 
