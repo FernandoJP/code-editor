@@ -16,6 +16,7 @@ const CodeBoxWrapper = styled.div`
 
     @media ${({ theme }) => theme.mediaQueries['mobile']} {
         flex-basis: 33.333333%;
+        overflow-x: hidden;
     }
 `
 
